@@ -99,7 +99,8 @@ export default function TaskCard({ task, showControls = true }) {
   };
   
   // Updated: Only the assignee (developer) can edit or delete the task
-  const canEdit = user.id === task.assignee && user.role === 'Developer';
+  // Additionally, tasks in "Pending Approval" state cannot be edited or deleted
+  const canEdit = user.id === task.assignee && user.role === 'Developer' && task.status !== 'Pending Approval';
   const canChangeStatus = user.id === task.assignee;
   const showApproveReject = user.role === 'Manager' && task.status === 'Pending Approval';
   const isTimerActive = activeTimer && activeTimer.taskId === task.id;
@@ -235,12 +236,12 @@ export default function TaskCard({ task, showControls = true }) {
                 </>
               )}
               
-              {canChangeStatus && !showApproveReject && task.status !== 'Closed' && (
+              {canChangeStatus && !showApproveReject && task.status !== 'Closed' && task.status !== 'Pending Approval' && (
                 <button 
                   className={task.status === 'Open' || task.status === 'In Progress' ? 'btn-success' : 'btn'} 
                   onClick={handleStatusAction}
                 >
-                  {task.status === 'Open' || task.status === 'In Progress' ? 'Mark Complete' : 'Reopen'}
+                  {'Mark Complete'}
                 </button>
               )}
               

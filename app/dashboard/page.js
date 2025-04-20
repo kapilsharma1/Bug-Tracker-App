@@ -39,9 +39,7 @@ export default function DashboardPage() {
         </div>
       )}
       
-      <div style={{ marginBottom: '2rem' }}>
-        <DashboardChart />
-      </div>
+
       
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
         <div>
@@ -96,6 +94,9 @@ export default function DashboardPage() {
           <h2 style={{ marginBottom: '1rem' }}>Time Tracking</h2>
           <TimeTrackerTable />
         </div>
+      </div>
+      <div style={{ marginBottom: '2rem' }}>
+        <DashboardChart />
       </div>
     </div>
   );
