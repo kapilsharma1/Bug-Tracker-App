@@ -2,11 +2,21 @@
 
 import { useState } from 'react';
 import useStore from '../lib/store';
+import { users } from '../data/users';
 
 export default function TaskCard({ task, showControls = true }) {
   const { user, updateTask, deleteTask, closeTask, approveTask, reopenTask, startTimer, stopTimer, activeTimer } = useStore();
   const [isEditing, setIsEditing] = useState(false);
   const [editedTask, setEditedTask] = useState({ ...task });
+  
+  // Get all developers for the assignee dropdown
+  const developers = users.filter(u => u.role === 'Developer');
+  
+  // Get the assignee name for display
+  const getAssigneeName = (assigneeId) => {
+    const assignee = users.find(u => u.id === assigneeId);
+    return assignee ? assignee.name : 'Unassigned';
+  };
   
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
@@ -88,6 +98,7 @@ export default function TaskCard({ task, showControls = true }) {
     }
   };
   
+  // Updated: Only the assignee (developer) can edit or delete the task
   const canEdit = user.id === task.assignee && user.role === 'Developer';
   const canChangeStatus = user.id === task.assignee;
   const showApproveReject = user.role === 'Manager' && task.status === 'Pending Approval';
@@ -121,7 +132,7 @@ export default function TaskCard({ task, showControls = true }) {
             ></textarea>
           </div>
           
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
             <div className="form-group">
               <label htmlFor="priority">Priority</label>
               <select
@@ -134,6 +145,23 @@ export default function TaskCard({ task, showControls = true }) {
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>
+              </select>
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="assignee">Assignee</label>
+              <select
+                className="form-control"
+                id="assignee"
+                name="assignee"
+                value={editedTask.assignee}
+                onChange={handleInputChange}
+              >
+                {developers.map(dev => (
+                  <option key={dev.id} value={dev.id}>
+                    {dev.name}
+                  </option>
+                ))}
               </select>
             </div>
             
@@ -193,8 +221,8 @@ export default function TaskCard({ task, showControls = true }) {
               <p><strong>Due:</strong> {formatDate(task.dueDate)}</p>
             </div>
             <div>
-              <p><strong>Assignee:</strong> {task.assigneeName || 'Unassigned'}</p>
-              <p><strong>Time Spent:</strong> {formatTimeSpent(task.timeSpent)}</p>
+              <p><strong>Assignee:</strong> {getAssigneeName(task.assignee)}</p>
+              <p><strong>Total Time Spent:</strong> {formatTimeSpent(task.timeSpent)}</p>
             </div>
           </div>
           

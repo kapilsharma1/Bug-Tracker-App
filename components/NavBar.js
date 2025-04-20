@@ -19,7 +19,7 @@ export default function NavBar() {
     <nav className="bg-primary" style={{ backgroundColor: '#0070f3', padding: '1rem 0' }}>
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Link href="/dashboard" style={{ color: 'white', fontWeight: 'bold', fontSize: '1.25rem' }}>
-          FealtyX Bug Tracker
+          Task Tracker
         </Link>
         
         <div style={{ display: 'flex', gap: '1rem' }}>
@@ -34,7 +34,7 @@ export default function NavBar() {
           )}
           
           <Link href="/tasks" style={{ color: 'white' }}>
-            Tasks
+           {user?.role === 'Developer' ? 'My Tasks' : 'All Tasks'}
           </Link>
           
           <div style={{ display: 'flex', alignItems: 'center', marginLeft: '1rem' }}>

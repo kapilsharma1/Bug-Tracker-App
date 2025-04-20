@@ -46,7 +46,7 @@ export default function DashboardPage() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
         <div>
           <h2 style={{ marginBottom: '1rem' }}>
-            {user.role === 'Developer' ? 'My Tasks' : 'Recent Tasks'}
+            {user.role === 'Developer' ? 'My Open Tasks' : 'Recent Tasks'}
           </h2>
           
           {user.role === 'Developer' ? (

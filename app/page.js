@@ -57,7 +57,7 @@ export default function LoginPage() {
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
       }}>
         <h1 style={{ textAlign: 'center', marginBottom: '2rem', color: '#0070f3' }}>
-          FealtyX Bug Tracker
+          Task Tracker
         </h1>
         
         <form onSubmit={handleSubmit}>

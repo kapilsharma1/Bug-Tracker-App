@@ -1,4 +1,4 @@
-# FealtyX Bug/Task Tracker
+#  Bug/Task Tracker
 
 A comprehensive bug/task tracker web application built with Next.js and React.
 

@@ -3,10 +3,14 @@
 import { useState, useEffect } from 'react';
 import useStore from '../lib/store';
 import { useRouter } from 'next/navigation';
+import { users } from '../data/users';
 
 export default function NewTaskForm({ onClose }) {
   const { user, addTask } = useStore();
   const router = useRouter();
+  
+  // Get all developers for the assignee dropdown
+  const developers = users.filter(u => u.role === 'Developer');
   
   // Redirect managers trying to access this component
   useEffect(() => {
@@ -24,7 +28,7 @@ export default function NewTaskForm({ onClose }) {
     title: '',
     description: '',
     priority: 'Medium',
-    assignee: user.id,
+    assignee: user.id, // Default to current user
     dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // One week from now
     createdBy: user.id,
   });
@@ -77,7 +81,7 @@ export default function NewTaskForm({ onClose }) {
           ></textarea>
         </div>
         
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
           <div className="form-group">
             <label htmlFor="priority">Priority</label>
             <select
@@ -90,6 +94,23 @@ export default function NewTaskForm({ onClose }) {
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
               <option value="High">High</option>
+            </select>
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="assignee">Assignee</label>
+            <select
+              className="form-control"
+              id="assignee"
+              name="assignee"
+              value={task.assignee}
+              onChange={handleInputChange}
+            >
+              {developers.map(dev => (
+                <option key={dev.id} value={dev.id}>
+                  {dev.name}
+                </option>
+              ))}
             </select>
           </div>
           
