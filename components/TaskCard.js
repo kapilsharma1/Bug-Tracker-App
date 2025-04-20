@@ -88,8 +88,8 @@ export default function TaskCard({ task, showControls = true }) {
     }
   };
   
-  const canEdit = user.id === task.assignee || user.role === 'Manager';
-  const canChangeStatus = user.id === task.assignee || user.role === 'Manager';
+  const canEdit = user.id === task.assignee && user.role === 'Developer';
+  const canChangeStatus = user.id === task.assignee;
   const showApproveReject = user.role === 'Manager' && task.status === 'Pending Approval';
   const isTimerActive = activeTimer && activeTimer.taskId === task.id;
   
@@ -227,7 +227,7 @@ export default function TaskCard({ task, showControls = true }) {
                 </>
               )}
               
-              {task.status !== 'Closed' && task.status !== 'Pending Approval' && (
+              {task.status !== 'Closed' && task.status !== 'Pending Approval' && user.role !== 'Manager' && (
                 <button 
                   className={isTimerActive ? 'btn-danger' : 'btn'} 
                   onClick={handleTimer}

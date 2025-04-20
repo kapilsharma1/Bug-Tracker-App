@@ -22,6 +22,7 @@ export default function DashboardPage() {
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h1>Dashboard</h1>
+        {/* Only developers can create new tasks */}
         {user.role === 'Developer' && (
           <button 
             className="btn"

@@ -1,10 +1,24 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useStore from '../lib/store';
+import { useRouter } from 'next/navigation';
 
 export default function NewTaskForm({ onClose }) {
   const { user, addTask } = useStore();
+  const router = useRouter();
+  
+  // Redirect managers trying to access this component
+  useEffect(() => {
+    if (user.role === 'Manager') {
+      onClose();
+    }
+  }, [user, onClose]);
+  
+  // Don't render for managers
+  if (user.role === 'Manager') {
+    return null;
+  }
   
   const [task, setTask] = useState({
     title: '',
@@ -22,6 +36,13 @@ export default function NewTaskForm({ onClose }) {
   
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Additional safety check - managers cannot create tasks
+    if (user.role === 'Manager') {
+      onClose();
+      return;
+    }
+    
     addTask(task);
     onClose();
   };

@@ -50,12 +50,15 @@ export default function TasksPage() {
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h1>Tasks</h1>
-        <button 
-          className="btn"
-          onClick={() => setShowNewTaskForm(true)}
-        >
-          Create New Task
-        </button>
+        {/* Only developers can create new tasks */}
+        {user.role === 'Developer' && (
+          <button 
+            className="btn"
+            onClick={() => setShowNewTaskForm(true)}
+          >
+            Create New Task
+          </button>
+        )}
       </div>
       
       {showNewTaskForm && (
