@@ -14,6 +14,8 @@ export default function DashboardPage() {
   // Filter tasks for dashboard display
   const myTasks = tasks.filter(task => task.assignee === user.id && task.status !== 'Closed');
   const pendingApprovalTasks = tasks.filter(task => task.status === 'Pending Approval');
+  const openTasks = tasks.filter(task => task.status === 'Open' || task.status === 'In Progress');
+  const closedTasks = tasks.filter(task => task.status === 'Closed');
   const recentTasks = [...tasks]
     .sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate))
     .slice(0, 5);
@@ -40,16 +42,13 @@ export default function DashboardPage() {
         </div>
       )}
       
-
-      
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+        {/* Left Column */}
         <div>
-          <h2 style={{ marginBottom: '1rem' }}>
-            {user.role === 'Developer' ? 'My Open Tasks' : 'Recent Tasks'}
-          </h2>
-          
           {user.role === 'Developer' ? (
-            <>
+            // Developer View - Left Column
+            <div>
+              <h2 style={{ marginBottom: '1rem' }}>My Open Tasks</h2>
               {myTasks.length === 0 ? (
                 <p>You have no active tasks.</p>
               ) : (
@@ -59,27 +58,44 @@ export default function DashboardPage() {
                   ))}
                 </>
               )}
-            </>
+            </div>
           ) : (
+            // Manager View - Left Column
             <>
-              {recentTasks.length === 0 ? (
-                <p>No tasks found.</p>
-              ) : (
-                <>
-                  {recentTasks.map(task => (
-                    <TaskCard key={task.id} task={task} />
-                  ))}
-                </>
-              )}
+              <div style={{ marginBottom: '2rem' }}>
+                <h2 style={{ marginBottom: '1rem' }}>Open Tasks</h2>
+                {openTasks.length === 0 ? (
+                  <p>No open tasks found.</p>
+                ) : (
+                  <>
+                    {openTasks.map(task => (
+                      <TaskCard key={task.id} task={task} />
+                    ))}
+                  </>
+                )}
+              </div>
+              
+              <div style={{ marginBottom: '2rem' }}>
+                <h2 style={{ marginBottom: '1rem' }}>Closed Tasks</h2>
+                {closedTasks.length === 0 ? (
+                  <p>No closed tasks found.</p>
+                ) : (
+                  <>
+                    {closedTasks.slice(0, 5).map(task => (
+                      <TaskCard key={task.id} task={task} />
+                    ))}
+                  </>
+                )}
+              </div>
             </>
           )}
         </div>
         
+        {/* Right Column */}
         <div>
           {user.role === 'Manager' && (
             <div style={{ marginBottom: '2rem' }}>
               <h2 style={{ marginBottom: '1rem' }}>Pending Approvals</h2>
-              
               {pendingApprovalTasks.length === 0 ? (
                 <p>No tasks pending approval.</p>
               ) : (
@@ -92,11 +108,14 @@ export default function DashboardPage() {
             </div>
           )}
           
-          <h2 style={{ marginBottom: '1rem' }}>Time Tracking</h2>
-          <TimeTrackerTable />
+          <div>
+            <h2 style={{ marginBottom: '1rem' }}>Time Tracking</h2>
+            <TimeTrackerTable />
+          </div>
         </div>
       </div>
-      <div style={{ marginBottom: '2rem' }}>
+      
+      <div style={{ marginTop: '2rem' }}>
         <DashboardChart />
       </div>
     </div>

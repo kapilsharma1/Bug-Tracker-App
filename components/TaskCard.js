@@ -241,7 +241,7 @@ export default function TaskCard({ task, showControls = true }) {
                   className={task.status === 'Open' || task.status === 'In Progress' ? 'btn-success' : 'btn'} 
                   onClick={handleStatusAction}
                 >
-                  {'Mark Complete'}
+                  Mark Complete
                 </button>
               )}
               
