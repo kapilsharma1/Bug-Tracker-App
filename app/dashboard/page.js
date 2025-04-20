@@ -26,6 +26,7 @@ export default function DashboardPage() {
         {user.role === 'Developer' && (
           <button 
             className="btn"
+            style={{fontSize: '1.1rem'}}
             onClick={() => setShowNewTaskForm(true)}
           >
             Create New Task

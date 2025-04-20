@@ -55,7 +55,7 @@ export default function TimeTrackerTable({ userId = null }) {
             <thead>
               <tr style={{ borderBottom: '1px solid #e9ecef' }}>
                 <th style={{ textAlign: 'left', padding: '0.5rem' }}>Task</th>
-                <th style={{ textAlign: 'left', padding: '0.5rem' }}>Assignee</th>
+               { user.role === 'Manager' && <th style={{ textAlign: 'left', padding: '0.5rem' }}>Assignee</th>}
                 <th style={{ textAlign: 'left', padding: '0.5rem' }}>Start Time</th>
                 <th style={{ textAlign: 'left', padding: '0.6rem' }}>End Time</th>
                 <th style={{ textAlign: 'left', padding: '0.5rem' }}>Duration</th>
@@ -65,7 +65,7 @@ export default function TimeTrackerTable({ userId = null }) {
               {filteredEntries.map(entry => (
                 <tr key={entry.id} style={{ borderBottom: '1px solid #e9ecef' }}>
                   <td style={{ padding: '0.5rem' }}>{getTaskTitle(entry.taskId)}</td>
-                  <td style={{ padding: '0.5rem' }}>{getAssigneeName(entry.taskId)}</td>
+                  { user.role === 'Manager' && <td style={{ padding: '0.5rem' }}>{getAssigneeName(entry.taskId)}</td>}
                   <td style={{ padding: '0.5rem' }}>{formatDate(entry.startTime)}</td>
                   <td style={{ padding: '0.6rem' }}>{formatDate(entry.endTime)}</td>
                   <td style={{ padding: '0.5rem' }}>{formatDuration(entry.duration)}</td>

@@ -24,7 +24,7 @@ export default function TasksApprovalPage() {
   }
   
   return (
-    <div>
+    <div className="container" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
       <h1 style={{ marginBottom: '2rem' }}>Pending Approvals</h1>
       
       {pendingApprovalTasks.length === 0 ? (

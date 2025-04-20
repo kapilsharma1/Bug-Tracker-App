@@ -22,7 +22,7 @@ export default function NavBar() {
           Task Tracker
         </Link>
         
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'space-between', alignItems: 'center' }}>
           <Link href="/dashboard" style={{ color: 'white' }}>
             Dashboard
           </Link>
@@ -38,7 +38,7 @@ export default function NavBar() {
           </Link>
           
           <div style={{ display: 'flex', alignItems: 'center', marginLeft: '1rem' }}>
-            <span style={{ color: 'white', marginRight: '0.5rem' }}>
+            <span style={{ color: 'gold', marginRight: '0.5rem' }}>
               {user?.name} ({user?.role})
             </span>
             <button 
@@ -51,7 +51,7 @@ export default function NavBar() {
                 borderRadius: '4px',
                 border: 'none',
                 cursor: 'pointer',
-                fontSize: '0.875rem'
+                fontSize: '1rem'
               }}
             >
               Logout
