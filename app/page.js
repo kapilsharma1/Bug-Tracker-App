@@ -104,7 +104,8 @@ export default function LoginPage() {
         
         <div style={{ marginTop: '2rem', fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>
           <p>Demo Credentials:</p>
-          <p>Developer: username: <strong>developer1</strong>, password: <strong>password123</strong></p>
+          <p>Developer 1: username: <strong>developer1</strong>, password: <strong>password123</strong></p>
+          <p>Developer 2: username: <strong>developer2</strong>, password: <strong>password123</strong></p>
           <p>Manager: username: <strong>manager1</strong>, password: <strong>password123</strong></p>
         </div>
       </div>

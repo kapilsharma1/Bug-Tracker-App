@@ -54,7 +54,9 @@ export default function TaskCard({ task, showControls = true }) {
   
   const handleStatusAction = () => {
     if (task.status === 'Open' || task.status === 'In Progress') {
+      if (window.confirm('Once you mark this as complete, you wont be able to edit or delete this task until the manager approves it')) {
       closeTask(task.id);
+      }
     } 
     // else if (task.status === 'Pending Approval' && user.role === 'Manager') {
     //   approveTask(task.id);

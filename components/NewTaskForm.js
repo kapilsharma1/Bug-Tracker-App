@@ -58,12 +58,12 @@ export default function NewTaskForm({ onClose }) {
     boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
     marginBottom: '2rem',
     backgroundColor: 'white',
-    borderLeft: '4px solid var(--primary-color)',
+    borderLeft: '4px solid rgba(14, 207, 120, 0.93)',
   };
   
   return (
     <div style={formStyle}>
-      <h2 style={{ marginBottom: '1.5rem', color: '#0070f3' }}>Create New Task</h2>
+      <h2 style={{ marginBottom: '1.5rem', color: 'rgba(14, 207, 120, 0.93)' }}>Create New Task</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">Title</label>
