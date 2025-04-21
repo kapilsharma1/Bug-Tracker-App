@@ -202,7 +202,7 @@ export default function TaskCard({ task, showControls = true }) {
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <h3 style={{ marginBottom: '0.5rem', marginRight: '1rem' }}>{task.title}</h3>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem',justifyContent: 'flex-end' ,width: '100%'}}>
               <span className={`badge ${getPriorityBadgeClass()}`}>
                 {task.priority}
               </span>

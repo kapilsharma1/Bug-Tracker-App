@@ -49,7 +49,7 @@ export default function TimeTrackerTable({ userId = null }) {
       {filteredEntries.length === 0 ? (
         <p style={{ marginTop: '1rem' }}>No time tracking entries found.</p>
       ) : (
-        <div style={{ overflowX: 'auto', marginTop: '1rem' }}>
+        <div className='time-tracker-table' >
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ borderBottom: '1px solid #e9ecef' }}>

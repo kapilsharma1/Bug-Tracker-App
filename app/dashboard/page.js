@@ -11,16 +11,14 @@ export default function DashboardPage() {
   const { user, tasks } = useStore();
   const [showNewTaskForm, setShowNewTaskForm] = useState(false);
   
-  // Filter tasks for dashboard display
+
   const myTasks = tasks.filter(task => task.assignee === user.id && task.status !== 'Closed');
   const pendingApprovalTasks = tasks.filter(task => task.status === 'Pending Approval');
   const openTasks = tasks.filter(task => task.status === 'Open' || task.status === 'In Progress');
   const closedTasks = tasks.filter(task => task.status === 'Closed');
-  const recentTasks = [...tasks]
-    .sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate))
-    .slice(0, 5);
+
   
-  // Styles for section containers
+
   const sectionStyle = {
     border: '1px solid #e0e0e0',
     borderRadius: '8px',
@@ -30,30 +28,30 @@ export default function DashboardPage() {
     backgroundColor: 'white',
   };
   
-  // Different border colors for each section type
+
   const openTasksStyle = {
     ...sectionStyle,
-    borderLeft: '4px solid #0070f3', // Primary color for open tasks
+    borderLeft: '4px solid #0070f3', 
   };
   
   const closedTasksStyle = {
     ...sectionStyle,
-    borderLeft: '4px solid #28a745', // Success color for closed tasks
+    borderLeft: '4px solid #28a745', 
   };
   
   const pendingApprovalsStyle = {
     ...sectionStyle,
-    borderLeft: '4px solid #ffc107', // Warning color for pending tasks
+    borderLeft: '4px solid #ffc107', 
   };
   
   const timeTrackingStyle = {
     ...sectionStyle,
-    borderLeft: '4px solid #6c757d', // Secondary color for time tracking
+    borderLeft: '4px solid #6c757d',
   };
   
   const chartStyle = {
     ...sectionStyle,
-    borderLeft: '4px solid #17a2b8', // Info color for activity chart
+    borderLeft: '4px solid #17a2b8',
     marginTop: '2rem',
   };
   
@@ -61,7 +59,7 @@ export default function DashboardPage() {
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h1>Dashboard</h1>
-        {/* Only developers can create new tasks */}
+     
         {user.role === 'Developer' && (
           <button 
             className="btn"
@@ -79,11 +77,11 @@ export default function DashboardPage() {
         </div>
       )}
       
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-        {/* Left Column */}
+      <div className='dashboard-grid'>
+     
         <div>
           {user.role === 'Developer' ? (
-            // Developer View - Left Column
+           
             <div style={openTasksStyle}>
               <h2 style={{ marginBottom: '1rem', color: '#0070f3' }}>My Open Tasks</h2>
               {myTasks.length === 0 ? (
@@ -97,7 +95,7 @@ export default function DashboardPage() {
               )}
             </div>
           ) : (
-            // Manager View - Left Column
+           
             <>
               <div style={openTasksStyle}>
                 <h2 style={{ marginBottom: '1rem', color: '#0070f3' }}>Open Tasks</h2>
@@ -128,7 +126,7 @@ export default function DashboardPage() {
           )}
         </div>
         
-        {/* Right Column */}
+     
         <div>
           {user.role === 'Manager' && (
             <div style={pendingApprovalsStyle}>

@@ -10,14 +10,14 @@ export default function DashboardLayout({ children }) {
   const { isAuthenticated } = useStore();
   
   useEffect(() => {
-    // Redirect to login if not authenticated
+
     if (!isAuthenticated) {
       router.push('/');
     }
   }, [isAuthenticated, router]);
   
   if (!isAuthenticated) {
-    return null; // Don't render anything while redirecting
+    return null; 
   }
   
   return (

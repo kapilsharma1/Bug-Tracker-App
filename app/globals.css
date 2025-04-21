@@ -144,6 +144,13 @@ h1, h2, h3, h4, h5, h6 {
   background-color: white;
 }
 
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+
 .section-open-tasks {
   border-left: 4px solid var(--primary-color);
 }
@@ -158,6 +165,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-time-tracking {
   border-left: 4px solid var(--secondary-color);
+}
+
+.time-tracker-table {
+overflow: auto ;
+margin-top: 1rem ;
 }
 
 .form-group {
@@ -242,3 +254,11 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--info-color);
   color: white;
 } 
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .time-tracker-table {
+   font-size: 0.7rem;
+  }
+}
