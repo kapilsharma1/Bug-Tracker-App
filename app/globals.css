@@ -221,6 +221,12 @@ margin-top: 1rem ;
   font-weight: 700;
 }
 
+.badge-container {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
 .badge-high {
   background-color: var(--error-color);
   color: white;
@@ -260,5 +266,10 @@ margin-top: 1rem ;
   }
   .time-tracker-table {
    font-size: 0.7rem;
+  }
+
+  .badge-container {
+  
+    width: 100%;
   }
 }
