@@ -45,7 +45,7 @@ export default function TimeTrackerTable({ userId = null }) {
   
   return (
     <div className="card">
-      <h3>Time Tracking History</h3>
+      {/* <h3>Time Tracking History</h3> */}
       
       {filteredEntries.length === 0 ? (
         <p style={{ marginTop: '1rem' }}>No time tracking entries found.</p>

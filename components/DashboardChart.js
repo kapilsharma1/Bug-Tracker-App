@@ -50,34 +50,31 @@ export default function DashboardChart() {
   }, [tasks, timeTracking]);
   
   return (
-    <div className="card">
-      <h3>Tasks Activity (Last 7 Days)</h3>
-      <div style={{ width: '100%', height: 300, marginTop: '1rem' }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart
-            data={chartData}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="display" />
-            <YAxis allowDecimals={false} />
-            <Tooltip />
-            <Legend />
-            <Line 
-              type="monotone" 
-              dataKey="tasksCount" 
-              stroke="#0070f3" 
-              name="Tasks Worked On"
-              activeDot={{ r: 8 }} 
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
+    <div style={{ width: '100%', height: 300 }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart
+          data={chartData}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="display" />
+          <YAxis allowDecimals={false} />
+          <Tooltip />
+          <Legend />
+          <Line 
+            type="monotone" 
+            dataKey="tasksCount" 
+            stroke="#0070f3" 
+            name="Tasks Worked On"
+            activeDot={{ r: 8 }} 
+          />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 } 

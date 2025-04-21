@@ -51,9 +51,19 @@ export default function NewTaskForm({ onClose }) {
     onClose();
   };
   
+  const formStyle = {
+    border: '1px solid #e0e0e0',
+    borderRadius: '8px',
+    padding: '1.5rem',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+    marginBottom: '2rem',
+    backgroundColor: 'white',
+    borderLeft: '4px solid var(--primary-color)',
+  };
+  
   return (
-    <div className="card">
-      <h2>Create New Task</h2>
+    <div style={formStyle}>
+      <h2 style={{ marginBottom: '1.5rem', color: '#0070f3' }}>Create New Task</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">Title</label>
@@ -128,7 +138,7 @@ export default function NewTaskForm({ onClose }) {
           </div>
         </div>
         
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem', marginTop: '1rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', marginTop: '1.5rem' }}>
           <button type="button" className="btn-secondary" onClick={onClose}>
             Cancel
           </button>

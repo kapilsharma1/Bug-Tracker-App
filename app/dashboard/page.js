@@ -20,6 +20,43 @@ export default function DashboardPage() {
     .sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate))
     .slice(0, 5);
   
+  // Styles for section containers
+  const sectionStyle = {
+    border: '1px solid #e0e0e0',
+    borderRadius: '8px',
+    padding: '1.5rem',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+    marginBottom: '2rem',
+    backgroundColor: 'white',
+  };
+  
+  // Different border colors for each section type
+  const openTasksStyle = {
+    ...sectionStyle,
+    borderLeft: '4px solid #0070f3', // Primary color for open tasks
+  };
+  
+  const closedTasksStyle = {
+    ...sectionStyle,
+    borderLeft: '4px solid #28a745', // Success color for closed tasks
+  };
+  
+  const pendingApprovalsStyle = {
+    ...sectionStyle,
+    borderLeft: '4px solid #ffc107', // Warning color for pending tasks
+  };
+  
+  const timeTrackingStyle = {
+    ...sectionStyle,
+    borderLeft: '4px solid #6c757d', // Secondary color for time tracking
+  };
+  
+  const chartStyle = {
+    ...sectionStyle,
+    borderLeft: '4px solid #17a2b8', // Info color for activity chart
+    marginTop: '2rem',
+  };
+  
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
@@ -47,8 +84,8 @@ export default function DashboardPage() {
         <div>
           {user.role === 'Developer' ? (
             // Developer View - Left Column
-            <div>
-              <h2 style={{ marginBottom: '1rem' }}>My Open Tasks</h2>
+            <div style={openTasksStyle}>
+              <h2 style={{ marginBottom: '1rem', color: '#0070f3' }}>My Open Tasks</h2>
               {myTasks.length === 0 ? (
                 <p>You have no active tasks.</p>
               ) : (
@@ -62,8 +99,8 @@ export default function DashboardPage() {
           ) : (
             // Manager View - Left Column
             <>
-              <div style={{ marginBottom: '2rem' }}>
-                <h2 style={{ marginBottom: '1rem' }}>Open Tasks</h2>
+              <div style={openTasksStyle}>
+                <h2 style={{ marginBottom: '1rem', color: '#0070f3' }}>Open Tasks</h2>
                 {openTasks.length === 0 ? (
                   <p>No open tasks found.</p>
                 ) : (
@@ -75,8 +112,8 @@ export default function DashboardPage() {
                 )}
               </div>
               
-              <div style={{ marginBottom: '2rem' }}>
-                <h2 style={{ marginBottom: '1rem' }}>Closed Tasks</h2>
+              <div style={closedTasksStyle}>
+                <h2 style={{ marginBottom: '1rem', color: '#28a745' }}>Closed Tasks</h2>
                 {closedTasks.length === 0 ? (
                   <p>No closed tasks found.</p>
                 ) : (
@@ -94,8 +131,8 @@ export default function DashboardPage() {
         {/* Right Column */}
         <div>
           {user.role === 'Manager' && (
-            <div style={{ marginBottom: '2rem' }}>
-              <h2 style={{ marginBottom: '1rem' }}>Pending Approvals</h2>
+            <div style={pendingApprovalsStyle}>
+              <h2 style={{ marginBottom: '1rem', color: '#ffc107' }}>Pending Approvals</h2>
               {pendingApprovalTasks.length === 0 ? (
                 <p>No tasks pending approval.</p>
               ) : (
@@ -108,14 +145,15 @@ export default function DashboardPage() {
             </div>
           )}
           
-          <div>
-            <h2 style={{ marginBottom: '1rem' }}>Time Tracking</h2>
+          <div style={timeTrackingStyle}>
+            <h2 style={{ marginBottom: '1rem', color: '#6c757d' }}>{user.role==="Developer"?"Time Tracking History Of " + user.name:"Time Tracking History Of All Developers"}</h2>
             <TimeTrackerTable />
           </div>
         </div>
       </div>
       
-      <div style={{ marginTop: '2rem' }}>
+      <div style={chartStyle}>
+        <h2 style={{ marginBottom: '1rem', color: '#17a2b8' }}>Tasks Activity (Last 7 Days)</h2>
         <DashboardChart />
       </div>
     </div>

@@ -1,11 +1,12 @@
 :root {
   --primary-color: #0070f3;
-  --secondary-color: #0070f3;
-  --background-color: #ffffff;
+  --secondary-color: #6c757d;
+  --background-color: #f8f9fa;
   --text-color: #333333;
   --error-color: #ff4040;
   --success-color: #28a745;
   --warning-color: #ffc107;
+  --info-color: #17a2b8;
   --gray-light: #f8f9fa;
   --gray-medium: #e9ecef;
   --gray-dark: #343a40;
@@ -25,6 +26,7 @@ body {
   overflow-x: hidden;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--background-color);
 }
 
 body {
@@ -116,12 +118,46 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #218838;
 }
 
+/* Enhanced card styles */
 .card {
   background-color: white;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   padding: 1.5rem;
   margin-bottom: 1rem;
+  border: 1px solid #e0e0e0;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Dashboard section styles */
+.dashboard-section {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  background-color: white;
+}
+
+.section-open-tasks {
+  border-left: 4px solid var(--primary-color);
+}
+
+.section-closed-tasks {
+  border-left: 4px solid var(--success-color);
+}
+
+.section-pending-approval {
+  border-left: 4px solid var(--warning-color);
+}
+
+.section-time-tracking {
+  border-left: 4px solid var(--secondary-color);
 }
 
 .form-group {
@@ -203,6 +239,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .status-pending {
-  background-color: #17a2b8;
+  background-color: var(--info-color);
   color: white;
 } 
