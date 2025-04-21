@@ -16,7 +16,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   
   useEffect(() => {
-    // If already authenticated, redirect to dashboard
+    
     if (isAuthenticated) {
       router.push('/dashboard');
     }

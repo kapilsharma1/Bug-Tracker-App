@@ -9,10 +9,10 @@ export default function NewTaskForm({ onClose }) {
   const { user, addTask } = useStore();
   const router = useRouter();
   
-  // Get all developers for the assignee dropdown
+ 
   const developers = users.filter(u => u.role === 'Developer');
   
-  // Redirect managers trying to access this component
+
   useEffect(() => {
     if (user.role === 'Manager') {
       onClose();
@@ -41,7 +41,7 @@ export default function NewTaskForm({ onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Additional safety check - managers cannot create tasks
+  
     if (user.role === 'Manager') {
       onClose();
       return;

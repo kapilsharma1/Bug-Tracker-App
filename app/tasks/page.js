@@ -15,24 +15,24 @@ export default function TasksPage() {
     searchTerm: '',
   });
   
-  // Filter tasks based on filters and user role
+ 
   const filteredTasks = tasks.filter(task => {
-    // For developers, only show their tasks
+  
     if (user.role === 'Developer' && task.assignee !== user.id) {
       return false;
     }
     
-    // Apply status filter
+
     if (filters.status && task.status !== filters.status) {
       return false;
     }
     
-    // Apply priority filter
+   
     if (filters.priority && task.priority !== filters.priority) {
       return false;
     }
     
-    // Apply search filter
+   
     if (filters.searchTerm) {
       const searchTermLower = filters.searchTerm.toLowerCase();
       const titleMatch = task.title.toLowerCase().includes(searchTermLower);
@@ -50,7 +50,7 @@ export default function TasksPage() {
     <div >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h1>Tasks</h1>
-        {/* Only developers can create new tasks */}
+   
         {user.role === 'Developer' && (
           <button 
             className="btn"

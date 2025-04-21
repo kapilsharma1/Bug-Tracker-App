@@ -9,10 +9,10 @@ export default function TaskCard({ task, showControls = true }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTask, setEditedTask] = useState({ ...task });
   
-  // Get all developers for the assignee dropdown
+
   const developers = users.filter(u => u.role === 'Developer');
   
-  // Get the assignee name for display
+
   const getAssigneeName = (assigneeId) => {
     const assignee = users.find(u => u.id === assigneeId);
     return assignee ? assignee.name : 'Unassigned';
@@ -58,11 +58,7 @@ export default function TaskCard({ task, showControls = true }) {
       closeTask(task.id);
       }
     } 
-    // else if (task.status === 'Pending Approval' && user.role === 'Manager') {
-    //   approveTask(task.id);
-    // } else if (task.status === 'Pending Approval' && user.role === 'Manager') {
-    //   reopenTask(task.id);
-    // }
+
   };
   
   const handleTimer = () => {
@@ -101,8 +97,7 @@ export default function TaskCard({ task, showControls = true }) {
     }
   };
   
-  // Updated: Only the assignee (developer) can edit or delete the task
-  // Additionally, tasks in "Pending Approval" state cannot be edited or deleted
+
   const canEdit = user.id === task.assignee && user.role === 'Developer' && task.status !== 'Pending Approval';
   const canChangeStatus = user.id === task.assignee;
   const showApproveReject = user.role === 'Manager' && task.status === 'Pending Approval';

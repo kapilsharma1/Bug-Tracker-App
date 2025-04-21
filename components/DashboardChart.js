@@ -8,7 +8,7 @@ export default function DashboardChart() {
   const { tasks, timeTracking } = useStore();
   
   const chartData = useMemo(() => {
-    // Prepare data for the last 7 days
+
     const dates = [];
     const today = new Date();
     
@@ -23,20 +23,20 @@ export default function DashboardChart() {
       });
     }
     
-    // Count tasks worked on each day based on time tracking entries
+  
     const dateMap = new Map(dates.map(d => [d.date, d]));
     
     timeTracking.forEach(entry => {
       const entryDate = new Date(entry.startTime).toISOString().split('T')[0];
       if (dateMap.has(entryDate)) {
         const dayData = dateMap.get(entryDate);
-        // Check if this task was already counted
+       
         const isNewTask = dayData.taskIds ? !dayData.taskIds.includes(entry.taskId) : true;
         
         if (isNewTask) {
           dayData.tasksCount++;
           
-          // Initialize taskIds array if it doesn't exist
+        
           if (!dayData.taskIds) {
             dayData.taskIds = [];
           }

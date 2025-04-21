@@ -19,8 +19,7 @@ export default function TimeTrackerTable({ userId = null }) {
   };
   
   const filteredEntries = useMemo(() => {
-    // If userId is provided, filter by that user, else use current user (for developer view)
-    // For managers, if userId is null, show all entries
+    
     if (userId) {
       return timeTracking.filter(entry => entry.userId === userId);
     } else if (user.role === 'Developer') {
@@ -45,7 +44,7 @@ export default function TimeTrackerTable({ userId = null }) {
   
   return (
     <div className="card">
-      {/* <h3>Time Tracking History</h3> */}
+  
       
       {filteredEntries.length === 0 ? (
         <p style={{ marginTop: '1rem' }}>No time tracking entries found.</p>
