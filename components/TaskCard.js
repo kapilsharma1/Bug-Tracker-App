@@ -55,11 +55,12 @@ export default function TaskCard({ task, showControls = true }) {
   const handleStatusAction = () => {
     if (task.status === 'Open' || task.status === 'In Progress') {
       closeTask(task.id);
-    } else if (task.status === 'Pending Approval' && user.role === 'Manager') {
-      approveTask(task.id);
-    } else if (task.status === 'Pending Approval' && user.role === 'Manager') {
-      reopenTask(task.id);
-    }
+    } 
+    // else if (task.status === 'Pending Approval' && user.role === 'Manager') {
+    //   approveTask(task.id);
+    // } else if (task.status === 'Pending Approval' && user.role === 'Manager') {
+    //   reopenTask(task.id);
+    // }
   };
   
   const handleTimer = () => {

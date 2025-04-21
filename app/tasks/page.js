@@ -47,7 +47,7 @@ export default function TasksPage() {
   });
   
   return (
-    <div className="container" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+    <div >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h1>Tasks</h1>
         {/* Only developers can create new tasks */}

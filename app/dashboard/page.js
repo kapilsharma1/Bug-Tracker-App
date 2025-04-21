@@ -146,7 +146,7 @@ export default function DashboardPage() {
           )}
           
           <div style={timeTrackingStyle}>
-            <h2 style={{ marginBottom: '1rem', color: '#6c757d' }}>{user.role==="Developer"?"Time Tracking History Of " + user.name:"Time Tracking History Of All Developers"}</h2>
+            <h2 style={{ marginBottom: '1rem', color: '#6c757d' }}>{user.role==="Developer"?"My Time Tracking History ":"Time Tracking History Of All Developers"}</h2>
             <TimeTrackerTable />
           </div>
         </div>
