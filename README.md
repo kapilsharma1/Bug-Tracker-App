@@ -22,7 +22,8 @@ A comprehensive bug/task tracker web application built with Next.js and React.
 1. Clone the repository:
    ```
    git clone <repository-url>
-   cd fealty
+   cd <folder name>
+
    ```
 
 2. Install dependencies:
