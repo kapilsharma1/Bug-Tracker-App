@@ -214,11 +214,15 @@ margin-top: 1rem ;
 }
 
 .badge {
-  display: inline-block;
+  display: flex;
   padding: 0.25rem 0.5rem;
   border-radius: 50px;
   font-size: 0.75rem;
   font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
 }
 
 .badge-container {

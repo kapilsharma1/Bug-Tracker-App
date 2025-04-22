@@ -118,7 +118,7 @@ export default function NavBar() {
           background-color: #f0f0f0;
         }
 
-        /* Mobile styles */
+       
         @media (max-width: 768px) {
           .hamburger {
             display: block;
